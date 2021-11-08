@@ -13,12 +13,13 @@ import io
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-# set bot prefix and the intents of the bot, ie- using user messages to generate responses
+# set bot prefix and the intents of the bot, ie- using user messages
+# to generate responses
 intents = discord.Intents.all()
 bot = discord.Client()
 
 
-######################################################################################
+###########################################################################
 
 # runs the startup, lets user know when bot is ready
 @bot.event
@@ -32,7 +33,8 @@ async def on_message(message):
     clock = datetime.now()
     clock_format = clock.strftime("%d/%m/%Y %H:%M:%S")
 
-    if message.author == bot.user or message.author.bot or len(message.content) == 0:
+    if message.author == bot.user or message.author.bot or \
+            len(message.content) == 0:
         return
 
     print(f'User Event: Message \n'
@@ -97,7 +99,8 @@ async def on_message_delete(message):
     clock = datetime.now()
     clock_format = clock.strftime("%d/%m/%Y %H:%M:%S")
 
-    if message.author == bot.user or message.author.bot or len(message.content) == 0:
+    if message.author == bot.user or message.author.bot or \
+            len(message.content) == 0:
         return
 
     print(f'User Event: Message Delete \n'
@@ -121,12 +124,13 @@ async def on_message_edit(message_before, message_after):
     clock = datetime.now()
     clock_format = clock.strftime("%d/%m/%Y %H:%M:%S")
 
-    if message_before.author == bot.user or message_before.author.bot or len(message_after.content) == 0 or \
+    if message_before.author == bot.user or message_before.author.bot or \
+            len(message_after.content) == 0 or \
             message_before.content == message_after.content:
         return
 
-    if message_before.author != bot.user or message_before.author.bot or message_before.content == \
-            message_after.content:
+    if message_before.author != bot.user or message_before.author.bot or \
+            message_before.content == message_after.content:
         print(f'User Event: Message Edit \n'
               f'Username: {message_before.author} \n'
               f'Message Before: {message_before.content} \n'
